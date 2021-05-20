@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Przepisy_kulinarne_projekt.Recipes;
 
 namespace Przepisy_kulinarne_projekt.Data
 {
@@ -12,5 +13,7 @@ namespace Przepisy_kulinarne_projekt.Data
             : base(options)
         {
         }
+
+        public DbSet<Przepis> Recipes { get; set; }
     }
 }
