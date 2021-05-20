@@ -6,21 +6,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Przepisy_kulinarne_projekt.Recipes
 {
-    public class Przepis
+    public class Recipe
     {
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Podaj nazwę przepisu")]
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Podaj składniki")]
-        public string ListaSkładników { get; set; }
+        public string Ingredients { get; set; }
 
         [Required(ErrorMessage ="Podaj kroki wykonania")]
-        public string OpisWykonania { get; set; }
+        public string Steps { get; set; }
 
-        public DateTime DataPublikacji { get; set; }
-        public string Zdjecie { get; set; }
+        public int Rating { get; set; }
+        public DateTime Date { get; set; }
+        public string Image { get; set; }
 
     }
 }

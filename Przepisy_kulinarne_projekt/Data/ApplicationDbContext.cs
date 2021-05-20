@@ -14,6 +14,6 @@ namespace Przepisy_kulinarne_projekt.Data
         {
         }
 
-        public DbSet<Przepis> Recipes { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
     }
 }
