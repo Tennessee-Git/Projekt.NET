@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Przepisy_kulinarne_projekt.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Przepisy_kulinarne_projekt.Recipes;
 
 namespace Przepisy_kulinarne_projekt.Data
 {
@@ -11,9 +11,9 @@ namespace Przepisy_kulinarne_projekt.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-        }
-
+        {}
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<FavouriteRecipe> FavouriteRecipes { get; set; }
     }
 }

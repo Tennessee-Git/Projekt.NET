@@ -10,8 +10,8 @@ using Przepisy_kulinarne_projekt.Data;
 namespace Przepisy_kulinarne_projekt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210520075743_Init2")]
-    partial class Init2
+    [Migration("20210521151522_annotations")]
+    partial class annotations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,30 +221,57 @@ namespace Przepisy_kulinarne_projekt.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Przepisy_kulinarne_projekt.Recipes.Przepis", b =>
+            modelBuilder.Entity("Przepisy_kulinarne_projekt.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DataPublikacji")
+                    b.Property<string>("Cat_Name")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<int?>("RecipiesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipiesId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Przepisy_kulinarne_projekt.Models.Recipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ListaSkładników")
-                        .IsRequired()
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nazwa")
+                    b.Property<string>("Ingredients")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(350)")
+                        .HasMaxLength(350);
 
-                    b.Property<string>("OpisWykonania")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Zdjecie")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Steps")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.HasKey("Id");
 
@@ -300,6 +327,13 @@ namespace Przepisy_kulinarne_projekt.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Przepisy_kulinarne_projekt.Models.Category", b =>
+                {
+                    b.HasOne("Przepisy_kulinarne_projekt.Models.Recipe", "Recipies")
+                        .WithMany("Categories")
+                        .HasForeignKey("RecipiesId");
                 });
 #pragma warning restore 612, 618
         }
