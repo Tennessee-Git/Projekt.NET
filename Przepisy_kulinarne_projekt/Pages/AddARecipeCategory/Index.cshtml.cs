@@ -20,12 +20,23 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
         }
 
         public IList<RecipeCategory> RecipeCategory { get;set; }
+        public IList<Category> Category { get; set; }
 
         public async Task OnGetAsync()
         {
             RecipeCategory = await _context.Recipes_Categories
                 .Include(r => r.Category)
                 .Include(r => r.Recipe).ToListAsync();
+            Category = await _context.Categories.ToListAsync();
+        }
+
+        public void OnPost(string searchcategory)
+        {
+            RecipeCategory = (from item in _context.Recipes_Categories
+                              .Include(r => r.Category)
+                                .Include(r => r.Recipe)
+                              where (item.Category.CategoryName == searchcategory) select item).ToList();
+            Category = _context.Categories.ToList();
         }
     }
 }
