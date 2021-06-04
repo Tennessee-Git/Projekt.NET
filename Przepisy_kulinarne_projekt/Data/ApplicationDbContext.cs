@@ -16,5 +16,6 @@ namespace Przepisy_kulinarne_projekt.Data
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<FavouriteRecipe> FavouriteRecipes { get; set; }
         public DbSet<RecipeCategory> RecipeCategories { get; set; }
+        public DbSet<Photography> PhotoGallery { get; set; }
     }
 }

@@ -31,5 +31,6 @@ namespace Przepisy_kulinarne_projekt.Models
 
         public ICollection<RecipeCategory> RecipeCategories { get; set; }
         public IdentityUser User { get; set; }
+        public ICollection<Photography> PhotoGallery { get; set; }
     }
 }
