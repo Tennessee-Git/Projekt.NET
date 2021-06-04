@@ -10,7 +10,7 @@ namespace Przepisy_kulinarne_projekt.Models
     {
         public int Id { get; set; }
         [MaxLength(20)]
-        public string Cat_Name { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<RecipeCategory> RecipeCategories { get; set; }
     }

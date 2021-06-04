@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Przepisy_kulinarne_projekt.Data;
 
 namespace Przepisy_kulinarne_projekt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210604111013_recipecategories")]
+    partial class recipecategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,7 +228,7 @@ namespace Przepisy_kulinarne_projekt.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("Cat_Name")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
@@ -305,10 +307,10 @@ namespace Przepisy_kulinarne_projekt.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int?>("RecipeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -393,15 +395,11 @@ namespace Przepisy_kulinarne_projekt.Data.Migrations
                 {
                     b.HasOne("Przepisy_kulinarne_projekt.Models.Category", "Category")
                         .WithMany("RecipeCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Przepisy_kulinarne_projekt.Models.Recipe", "Recipe")
                         .WithMany("RecipeCategories")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RecipeId");
                 });
 #pragma warning restore 612, 618
         }
