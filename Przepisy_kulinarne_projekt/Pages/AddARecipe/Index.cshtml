@@ -31,7 +31,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
+                @Html.DisplayNameFor(model => model.Recipe[0].Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Rating)
@@ -43,7 +43,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RecipeName)
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 @*<td>
                     @Html.DisplayFor(modelItem => item.Ingredients)

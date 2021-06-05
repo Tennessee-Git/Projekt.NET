@@ -38,7 +38,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
                 return Page();
             }
 
-            _context.Recipes_Categories.Add(RecipeCategory);
+            _context.RecipeCategories.Add(RecipeCategory);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
