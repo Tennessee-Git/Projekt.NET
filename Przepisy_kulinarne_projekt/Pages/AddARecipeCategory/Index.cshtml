@@ -1,0 +1,58 @@
+﻿@page
+@model Przepisy_kulinarne_projekt.Pages.AddARecipeCategory.IndexModel
+
+@{
+    ViewData["Title"] = "Kategorie";
+}
+
+<h1>Kategorie</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form method="post">
+    <select name="searchcategory">
+        <option selected disabled>--Wybierz kategorię</option>
+        <option value="Śniadanie">Śniadanie</option>
+        <option value="Obiad">Obiad</option>
+        <option value="Kolacja">Kolacja</option>
+        @*@foreach (var item in Model.Category)
+        {
+            <option value="@Html.DisplayFor(modelItem => item.CategoryName)">@Html.DisplayFor(modelItem => item.CategoryName)</option>
+        }*@
+    </select>
+    <input type="submit" value="Wybierz"/>
+    <a asp-page="Index">Pokaż wszystkie rekordy</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RecipeCategory[0].Recipe)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RecipeCategory[0].Category)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RecipeCategory)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Recipe.RecipeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</form>

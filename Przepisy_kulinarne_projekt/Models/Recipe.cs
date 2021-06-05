@@ -23,6 +23,7 @@ namespace Przepisy_kulinarne_projekt.Models
         [MaxLength(1000)]
         public string Steps { get; set; }
 
+        [Display(Name = "Ocena")]
         public int Rating { get; set; }
 
         [DataType(DataType.Date)]

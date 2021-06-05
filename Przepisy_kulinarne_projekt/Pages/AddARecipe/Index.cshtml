@@ -1,0 +1,71 @@
+﻿@page
+@model Przepisy_kulinarne_projekt.Pages.AddARecipe.IndexModel
+
+@{
+    ViewData["Title"] = "Baza wszystkich przepisów";
+}
+
+<h1>Baza wszystkich przepisów</h1>
+
+<table class="table">
+    @*<thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipe[0].Ingredients)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipe[0].Steps)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipe[0].Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipe[0].Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>*@
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Rating)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recipe)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipeName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Ingredients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Steps)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>*@
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
+                <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
+                <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-page="Create"><button type="button" class="btn btn-primary">Dodaj nowy przepis</button></a>
+</p>
