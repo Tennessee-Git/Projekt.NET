@@ -11,15 +11,8 @@
     <a asp-page="Create">Create New</a>
 </p>
 <form method="post">
-    <select name="searchcategory">
+    <select name="searchcategory" asp-items="@(new SelectList(Model.Category, "Id","CategoryName")) ">
         <option selected disabled>--Wybierz kategorię</option>
-        <option value="Śniadanie">Śniadanie</option>
-        <option value="Obiad">Obiad</option>
-        <option value="Kolacja">Kolacja</option>
-        @*@foreach (var item in Model.Category)
-        {
-            <option value="@Html.DisplayFor(modelItem => item.CategoryName)">@Html.DisplayFor(modelItem => item.CategoryName)</option>
-        }*@
     </select>
     <input type="submit" value="Wybierz"/>
     <a asp-page="Index">Pokaż wszystkie rekordy</a>
