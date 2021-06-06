@@ -25,5 +25,21 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         {
             Recipe = await _context.Recipes.ToListAsync();
         }
+        public void OnPost(string searchrecipe)
+        {
+            ViewData["GetRecipe"] = searchrecipe;
+            Recipe = (from item in _context.Recipes
+                              where (item.RecipeName.Contains(searchrecipe))
+                              select item).ToList();
+        }
+        //public void OnPost(string searchcategory)
+        //{
+        //    ViewData["GetRecipe"] = searchcategory;
+        //    RecipeCategory = (from item in _context.Recipes_Categories
+        //                      .Include(r => r.Category)
+        //                        .Include(r => r.Recipe)
+        //                      where (item.Category.CategoryName.Contains(searchcategory))
+        //                      select item).ToList();
+        //    Category = _context.Categories.ToList();
     }
 }
