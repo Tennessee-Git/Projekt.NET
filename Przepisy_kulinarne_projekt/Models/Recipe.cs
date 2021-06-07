@@ -30,8 +30,8 @@ namespace Przepisy_kulinarne_projekt.Models
         public DateTime Date { get; set; }
         public string Image { get; set; }
 
-        public ICollection<RecipeCategory> RecipeCategories { get; set; }
-        public IdentityUser User { get; set; }
-        public ICollection<Photography> PhotoGallery { get; set; }
+        public virtual ICollection<RecipeCategory> RecipeCategories { get; set; }
+        public virtual IdentityUser User { get; set; }
+        public virtual ICollection<Photography> PhotoGallery { get; set; }
     }
 }

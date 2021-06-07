@@ -11,6 +11,6 @@ namespace Przepisy_kulinarne_projekt.Models
         public string Path { get; set; }
         public string Link { get; set; }
         public int RecipeId { get; set; }
-        public Recipe Recipe { get; set; }
+        public virtual Recipe Recipe { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Przepisy_kulinarne_projekt.Models
     public class FavouriteRecipe
     {
         public int Id { get; set; }
-        public Recipe Recipe { get; set; }
-        public IdentityUser User { get; set; }
+        public virtual Recipe Recipe { get; set; }
+        public virtual IdentityUser User { get; set; }
     }
 }
