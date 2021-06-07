@@ -12,6 +12,5 @@ namespace Przepisy_kulinarne_projekt.Models
         [MaxLength(20)]
         public string CategoryName { get; set; }
 
-        public virtual ICollection<RecipeCategory> RecipeCategories { get; set; }
     }
 }
