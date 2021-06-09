@@ -3,6 +3,29 @@
 @{
     ViewData["Title"] = "Privacy Policy";
 }
+<head>
+    <link rel="stylesheet" href="~/css/rateit.css">
+</head>
+
+<script type="text/javascript" src="~/rateit/jquery.rateit.min.js"></script>
 <h1>@ViewData["Title"]</h1>
+<div class="rateit">
+</div>
+
+
+<script type="text/javascript">
+    var cnt = 0;
+    function rate(x) {
+        cnt = +x;
+        alert(x);
+    }
+
+</script>
+
+<input id="Button1" type="button" value="+" onclick="rate(1)" />
+<input id="Button1" type="button" value=" - " onclick="rate(0)" />
+
+
 
 <p>Use this page to detail your site's privacy policy.</p>
+

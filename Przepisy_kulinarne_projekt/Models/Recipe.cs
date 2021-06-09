@@ -31,5 +31,6 @@ namespace Przepisy_kulinarne_projekt.Models
 
 
         public List<RecipeCategory> RecipeCategories { get; set; }
+
     }
 }

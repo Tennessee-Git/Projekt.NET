@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Details";
 }
-
 <h1>@Html.DisplayFor(model => model.Recipe.RecipeName)</h1>
 
 <div>
@@ -43,7 +42,14 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Recipe.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
+    <a asp-page="./Edit" asp-route-id="@Model.Recipe.Id">
+        <button type="button" class="btn btn-warning">Edytuj przepis</button>
+    </a>
 </div>
 <br />
 <a asp-page="./Index">Wróć do listy przepisów</a>
+
+
+
+
+

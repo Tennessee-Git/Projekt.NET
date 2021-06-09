@@ -4,73 +4,92 @@
 @{
     ViewData["Title"] = "Baza wszystkich przepisów";
 }
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
 
 <h1>Baza wszystkich przepisów</h1>
 <form method="post">
-<p>
-    <input type="search" placeholder="Wpisz nazwę przepisu" value="@ViewData["GetRecipe"]" name="searchrecipe" />
-    <input type="submit" value="Wybierz" />
-</p>
-<a asp-page="Index">Pokaż wszystkie rekordy</a>
-<table class="table">
-    @*<thead>
+    <p>
+        <input type="search" placeholder="Wpisz nazwę przepisu" value="@ViewData["GetRecipe"]" name="searchrecipe" />
+        <input type="submit" value="Wybierz" />
+    </p>
+    <a asp-page="Index">Pokaż wszystkie rekordy</a>
+    <table class="table">
+        @*<thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Recipe[0].Ingredients)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Recipe[0].Steps)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Recipe[0].Rating)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Recipe[0].Date)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>*@
+        <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Ingredients)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Steps)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Recipe[0].Rating)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Date)
-                </th>
-                <th></th>
             </tr>
-        </thead>*@
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipe[0].Rating)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Recipe)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RecipeName)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Ingredients)
-                    </td>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Recipe)
+            {
+                <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Steps)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>*@
-                <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
-                    <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
-                    <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        @Html.DisplayFor(modelItem => item.RecipeName)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Ingredients)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Steps)
+                        </td>*@
+                    <td>
+                        <div class="center">
+                            <p>
+                            </p><div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                </span>
+                                <input type="text" name="quant[2]" class="form-control input-number" value="@Html.DisplayFor(modelItem => item.Rating)" min="-100" max="100" disabled>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <p></p>
+                        </div>
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>*@
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
+                        <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </form>
 <p>
     <a asp-page="Create"><button type="button" class="btn btn-primary">Dodaj nowy przepis</button></a>
