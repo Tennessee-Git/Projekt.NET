@@ -10,6 +10,7 @@ namespace Przepisy_kulinarne_projekt.Models
     {
         public int Id { get; set; }
         [MaxLength(20)]
+        [Display(Name = "Nazwa kategorii")]
         public string CategoryName { get; set; }
 
         public List<RecipeCategory> RecipeCategories { get; set; }

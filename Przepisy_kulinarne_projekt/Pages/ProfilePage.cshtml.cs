@@ -19,16 +19,17 @@ namespace Przepisy_kulinarne_projekt.Areas.Identity.Pages.Account.Manage
         public List<Recipe> Recipes { get; set; }
         public List<FavouriteRecipe> FavouriteRecipes { get; set; }
         
-        public ProfilePageModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
+        public ProfilePageModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            string UserId = _userManager.GetUserId(HttpContext.User);
-            Recipes = _context.Recipes.Where(b => b.User.Id == UserId).ToList<Recipe>();
-            FavouriteRecipes = _context.FavouriteRecipes.Where(c => c.User.Id == UserId).ToList<FavouriteRecipe>();
+            IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
+            Recipes = _context.Recipes.Where(b => b.User == user).ToList<Recipe>();
+            FavouriteRecipes = _context.FavouriteRecipes.Where(c => c.User == user).ToList<FavouriteRecipe>();
         }
         
     }
