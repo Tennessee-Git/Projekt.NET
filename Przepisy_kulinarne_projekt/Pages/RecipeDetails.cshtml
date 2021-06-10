@@ -1,4 +1,7 @@
 ﻿@page
 @model Przepisy_kulinarne_projekt.Pages.Shared.RecipeDetailsModel
 @{
+    ViewData["Title"] = "Szczegóły przepisu";
 }
+
+<h1>@Html.DisplayFor(model => model.Recipe.Name)</h1>
