@@ -29,8 +29,8 @@ namespace Przepisy_kulinarne_projekt.Models
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public ICollection<RecipeCategory> RecipeCategories { get; set; }
+        public List<RecipeCategory> RecipeCategories { get; set; }
         public IdentityUser User { get; set; }
-        public ICollection<Photography> PhotoGallery { get; set; }
+        public List<Photography> PhotoGallery { get; set; }
     }
 }
