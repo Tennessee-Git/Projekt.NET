@@ -23,7 +23,10 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
 
         public async Task OnGetAsync()
         {
-            Recipe = await _context.Recipes.ToListAsync();
+            Recipe = await _context.Recipes.Include(r => r.User).ToListAsync();
+            
+
+
         }
         public void OnPost(string searchrecipe)
         {
@@ -32,6 +35,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
                               where (item.RecipeName.Contains(searchrecipe))
                               select item).ToList();
         }
+
         //public void OnPost(string searchcategory)
         //{
         //    ViewData["GetRecipe"] = searchcategory;

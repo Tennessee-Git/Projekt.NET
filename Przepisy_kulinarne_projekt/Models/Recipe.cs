@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Przepisy_kulinarne_projekt.Models
 {
@@ -30,6 +31,8 @@ namespace Przepisy_kulinarne_projekt.Models
         public DateTime Date { get; set; }
 
 
+        [Display(Name ="Nazwa użytkownika")]
+        public IdentityUser User { get; set; }
         public List<RecipeCategory> RecipeCategories { get; set; }
     }
 }

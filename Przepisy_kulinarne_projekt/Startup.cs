@@ -39,6 +39,7 @@ namespace Przepisy_kulinarne_projekt
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

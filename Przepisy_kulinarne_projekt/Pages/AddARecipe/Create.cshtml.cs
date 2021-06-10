@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,9 +17,13 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
     {
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
 
-        public CreateModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
+        UserManager<IdentityUser> _userManager;
+
+        public CreateModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         public IActionResult OnGet()
@@ -38,6 +43,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
                 return Page();
             }
             Recipe.Date = DateTime.Now;
+            Recipe.User = await _userManager.GetUserAsync(HttpContext.User);
             _context.Recipes.Add(Recipe);
             await _context.SaveChangesAsync();
 
