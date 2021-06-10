@@ -10,23 +10,24 @@
         <img src="~/images/gear.svg" />
     </a>
 </div>
+
 <h5 class="mt-3">Przepisy</h5>
 <div class="card-columns">
     @foreach (var item in Model.Recipes)
     {
-    <a asp-page="./RecipeDetails" asp-route-id="@item.Id">
+    <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
         <div class="card text-center">
             <h5 class="card-body">@item.Name</h5>
         </div>
     </a>
-        
     }
 </div>
+
 <h5 class="mt-3">Ulubione przepisy</h5>
 <div class="card-columns">
     @foreach (var item in Model.FavouriteRecipes)
     {
-    <a asp-page="./RecipeDetails" asp-route-id="@item.Id">
+    <a class="nav-link nav-item" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
         <div class="card text-center">
             <h5 class="card-body">@item.Recipe.Name</h5>
         </div>
