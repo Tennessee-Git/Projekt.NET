@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Przepisy_kulinarne_projekt.Data;
 
-namespace Przepisy_kulinarne_projekt.Data.Migrations
+namespace Przepisy_kulinarne_projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210610080541_Hope")]
-    partial class Hope
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
