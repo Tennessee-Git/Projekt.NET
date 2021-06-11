@@ -7,17 +7,34 @@
 @inject UserManager<IdentityUser> UserManager
 <div class="row text-center justify-content-center mt-5">
     <h1>@Model.Recipe.Name  </h1>
-    @if (SignInManager.IsSignedIn(User))
+    @if (SignInManager.IsSignedIn(User) && UserManager.GetUserId(HttpContext.User) == Model.UserId)
     {
         <a class="nav-item nav-link mt-1" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
-            <img src="~/images/gear.svg" />
+            <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;"/>
         </a>
     }
 </div>
+
 <div class="text-center mt-1">
     <h5>Data dodania: @Model.Recipe.Date</h5>
     <h4 class="mt-4">Składniki: @Model.Recipe.Ingredients</h4>
     <h4 class="mt-4">Sposób wykonania: @Model.Recipe.Steps</h4>
     <h4 class="mt-4">Ocena: @Model.Recipe.Rating</h4>
+    <h4 class="mt-4">Galeria zdjęć:</h4>
 </div>
 
+<div class="container">
+    @foreach (var item in Model.Photos)
+    {
+        @if (item.Link != null)
+        {
+            <img src="@item.Link" style="width:200px;height:200px;"/>
+        }
+        else if (item.Path != null)
+        {
+             <img src="~/images/@item.Path" style="width:200px;height:200px;"/>
+        }
+        else
+        {}
+    }
+</div>
