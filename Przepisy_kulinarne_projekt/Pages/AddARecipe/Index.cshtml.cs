@@ -32,7 +32,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         {
             ViewData["GetRecipe"] = searchrecipe;
             Recipe = (from item in _context.Recipes
-                              where (item.RecipeName.Contains(searchrecipe))
+                              where (item.Name.Contains(searchrecipe))
                               select item).ToList();
         }
 
