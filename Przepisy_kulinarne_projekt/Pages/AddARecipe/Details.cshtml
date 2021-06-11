@@ -5,16 +5,16 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>@Html.DisplayFor(model => model.Recipe.Name)</h1>
+<h1>@Html.DisplayFor(model => model.Recipe.RecipeName)</h1>
 
 <div>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Name)
+            @Html.DisplayNameFor(model => model.Recipe.RecipeName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Name)
+            @Html.DisplayFor(model => model.Recipe.RecipeName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Recipe.Ingredients)

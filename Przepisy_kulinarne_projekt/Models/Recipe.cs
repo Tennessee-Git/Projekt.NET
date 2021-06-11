@@ -14,7 +14,7 @@ namespace Przepisy_kulinarne_projekt.Models
         [Required(ErrorMessage = "Podaj nazwę przepisu")]
         [MaxLength(50)]
         [Display(Name= "Nazwa przepisu")]
-        public string Name { get; set; }
+        public string RecipeName { get; set; }
 
         [Required(ErrorMessage = "Podaj składniki")]
         [MaxLength(350)]

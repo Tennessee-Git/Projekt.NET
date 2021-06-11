@@ -10,8 +10,8 @@ using Przepisy_kulinarne_projekt.Data;
 namespace Przepisy_kulinarne_projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210611132709_Rozwiazanie_problemu_z_UserId")]
-    partial class Rozwiazanie_problemu_z_UserId
+    [Migration("20210611175605_Poprawka")]
+    partial class Poprawka
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -297,13 +297,13 @@ namespace Przepisy_kulinarne_projekt.Migrations
                         .HasColumnType("nvarchar(350)")
                         .HasMaxLength(350);
 
-                    b.Property<string>("Name")
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecipeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
 
                     b.Property<string>("Steps")
                         .IsRequired()

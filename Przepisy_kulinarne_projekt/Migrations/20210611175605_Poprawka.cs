@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Przepisy_kulinarne_projekt.Migrations
 {
-    public partial class init : Migration
+    public partial class Poprawka : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -171,7 +171,7 @@ namespace Przepisy_kulinarne_projekt.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    RecipeName = table.Column<string>(maxLength: 50, nullable: false),
                     Ingredients = table.Column<string>(maxLength: 350, nullable: false),
                     Steps = table.Column<string>(maxLength: 1000, nullable: false),
                     Rating = table.Column<int>(nullable: false),

@@ -295,13 +295,13 @@ namespace Przepisy_kulinarne_projekt.Migrations
                         .HasColumnType("nvarchar(350)")
                         .HasMaxLength(350);
 
-                    b.Property<string>("Name")
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecipeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
 
                     b.Property<string>("Steps")
                         .IsRequired()
@@ -310,9 +310,6 @@ namespace Przepisy_kulinarne_projekt.Migrations
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                    .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 

@@ -17,7 +17,7 @@
     {
     <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
         <div class="card text-center">
-            <h5 class="card-body">@item.Name</h5>
+            <h5 class="card-body">@item.RecipeName</h5>
         </div>
     </a>
     }
@@ -29,7 +29,7 @@
     {
     <a class="nav-link nav-item" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
         <div class="card text-center">
-            <h5 class="card-body">@item.Recipe.Name</h5>
+            <h5 class="card-body">@item.Recipe.RecipeName</h5>
         </div>
     </a>
     }
