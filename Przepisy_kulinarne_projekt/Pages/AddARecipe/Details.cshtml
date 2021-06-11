@@ -7,8 +7,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <div class="row text-center justify-content-center mt-5">
-    <h1>@Model.Recipe.Name  </h1>
-    @if (SignInManager.IsSignedIn(User) && UserManager.GetUserId(HttpContext.User) == Model.UserId)
+    <h1>@Model.Recipe.RecipeName  </h1>
+    @if (SignInManager.IsSignedIn(User) )@*&& UserManager.GetUserId(HttpContext.User) == Model.UserId)*@
     {
         <a class="nav-item nav-link mt-1" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
             <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;"/>

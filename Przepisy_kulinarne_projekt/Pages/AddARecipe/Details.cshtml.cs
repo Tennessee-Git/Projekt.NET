@@ -37,7 +37,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
 
             Photos = _context.PhotoGallery.Where(a => a.Recipe.Id == id).ToList<Photography>();
-            UserId = Recipe.User.Id;
+            //UserId = Recipe.User.Id;
 
             return Page();
         }
