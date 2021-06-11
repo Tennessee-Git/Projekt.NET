@@ -36,6 +36,8 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
                               select item).ToList();
         }
 
+
+
         //public void OnPost(string searchcategory)
         //{
         //    ViewData["GetRecipe"] = searchcategory;

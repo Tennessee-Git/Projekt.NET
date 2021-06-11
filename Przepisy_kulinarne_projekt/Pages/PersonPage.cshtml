@@ -1,0 +1,23 @@
+﻿@page
+@model Przepisy_kulinarne_projekt.Pages.PersonPageModel
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<div class="row text-center justify-content-center mt-5">
+    <h1>@ViewData["Person"]  </h1>
+    <a class="nav-item nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Edytuj profil">
+    </a>
+</div>
+
+<h5 class="mt-3">Przepisy</h5>
+<div class="card-columns">
+    @foreach (var item in Model.Recipes)
+    {
+        <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
+            <div class="card text-center">
+                <h5 class="card-body">@item.RecipeName</h5>
+            </div>
+        </a>
+    }
+</div>

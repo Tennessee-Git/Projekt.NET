@@ -64,7 +64,7 @@
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
-                        @Html.DisplayFor(modelItem => item.User.UserName)
+                        <a class="nav-link text-dark" asp-area="" asp-page="/PersonPage" asp-route-id="@item.User.UserName" title="Manage">@Html.DisplayFor(modelItem => item.User.UserName)</a>
                 </td>
                 <td>
                     <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
