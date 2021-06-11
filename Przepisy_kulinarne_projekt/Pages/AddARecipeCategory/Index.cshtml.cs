@@ -30,13 +30,25 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
             Category = await _context.Categories.ToListAsync();
         }
 
-        public void OnPost(string searchcategory)
+
+        public void OnPost(int searchcategory)
         {
             RecipeCategory = (from item in _context.RecipeCategories
                               .Include(r => r.Category)
                                 .Include(r => r.Recipe)
-                              where (item.Category.CategoryName == searchcategory) select item).ToList();
+                              where (item.Category.Id == searchcategory)
+                              select item).ToList();
             Category = _context.Categories.ToList();
         }
+        //public void OnPost(string searchcategory)
+        //{
+        //    ViewData["GetRecipe"] = searchcategory;
+        //    RecipeCategory = (from item in _context.Recipes_Categories
+        //                      .Include(r => r.Category)
+        //                        .Include(r => r.Recipe)
+        //                      where (item.Category.CategoryName.Contains(searchcategory))
+        //                      select item).ToList();
+        //    Category = _context.Categories.ToList();
+        //}
     }
 }

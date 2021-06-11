@@ -6,7 +6,12 @@
 }
 
 <h1>Baza wszystkich przepisów</h1>
-
+<form method="post">
+<p>
+    <input type="search" placeholder="Wpisz nazwę przepisu" value="@ViewData["GetRecipe"]" name="searchrecipe" />
+    <input type="submit" value="Wybierz" />
+</p>
+<a asp-page="Index">Pokaż wszystkie rekordy</a>
 <table class="table">
     @*<thead>
             <tr>
@@ -36,6 +41,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Recipe[0].Rating)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].User)
+            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -46,26 +55,27 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.Ingredients)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Steps)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.Ingredients)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Steps)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>*@
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
-                <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
-                <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
-            </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+</form>
 <p>
     <a asp-page="Create"><button type="button" class="btn btn-primary">Dodaj nowy przepis</button></a>
 </p>
