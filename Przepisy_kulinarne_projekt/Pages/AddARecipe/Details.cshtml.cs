@@ -17,9 +17,10 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         private readonly UserManager<IdentityUser> _userManager;
         public Recipe Recipe { get; set; }
         public List<Photography>Photos { get; set; }
-        public List<Category> CategoriesList { get; set; }
         public List<RecipeCategory> RecipeCategories { get; set; }
+        public List<Category>Categories { get; set; }
         public bool AbleToEdit = false;
+        public FavouriteRecipe FavRecipe { get; set; }
 
         public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
@@ -42,17 +43,22 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
 
             Photos = _context.PhotoGallery.Where(a => a.Recipe.Id == id).ToList<Photography>();
-            //RecipeCategories = await _context.RecipeCategories
-            //    .Include(r => r.Category)
-            //    .Include(r => r.Recipe).Where(b=>b.RecipeId == id).ToListAsync();
-            //foreach(var item in RecipeCategories) // Problem z pobraniem kategorii dzięki id z recipecategory
-            //{
+            RecipeCategories = await _context.RecipeCategories
+                .Include(r => r.Category)
+                .Include(r => r.Recipe).Where(b => b.RecipeId == id).ToListAsync();
 
-            //    var temp = (Category)_context.Categories.Where(c => c.Id == item.Category.Id);
-            //    CategoriesList.Add(temp);
-            //}
+
             if (HttpContext.User.Identity.Name == Recipe.User.UserName)
                 AbleToEdit = true;
+
+            var CategoriesQuery =
+                from c in _context.Categories
+                join
+                r in _context.RecipeCategories on c.Id equals r.CategoryId
+                where r.RecipeId == id
+                select c;
+
+            Categories = CategoriesQuery.ToList<Category>();
 
             return Page();
         }

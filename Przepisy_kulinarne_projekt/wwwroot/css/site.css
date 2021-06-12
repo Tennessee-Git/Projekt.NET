@@ -74,16 +74,19 @@ body {
     height: 80px;
     width: 100px;
     background: #ccccff;
+    text-align: center;
 }
 
 .card-body {
     height: 80px;
     width: 100px;
     background: #ccccff;
+    text-align: center;
 }
 
 .card-columns .card-body {
     height: 80px;
     width: 100px;
     background: #ccccff;
+    text-align: center;
 }
