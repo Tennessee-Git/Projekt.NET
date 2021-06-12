@@ -12,7 +12,6 @@ namespace Przepisy_kulinarne_projekt.Pages
 {
     public class PersonPageModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
         public List<Recipe> Recipes { get; set; }
         public List<FavouriteRecipe> FavouriteRecipes { get; set; }
@@ -20,7 +19,6 @@ namespace Przepisy_kulinarne_projekt.Pages
         public PersonPageModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
-            _userManager = userManager;
         }
 
         //public async Task OnGetAsync()

@@ -8,13 +8,14 @@
 @inject UserManager<IdentityUser> UserManager
 <div class="row text-center justify-content-center mt-5">
     <h1>@Model.Recipe.RecipeName  </h1>
-    @if (SignInManager.IsSignedIn(User) )@*&& UserManager.GetUserId(HttpContext.User) == Model.UserId)*@
+    @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit==true)
     {
         <a class="nav-item nav-link mt-1" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
-            <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;"/>
+            <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;" />
         </a>
     }
 </div>
+
 
 <div class="text-center mt-1">
     <h5>Data dodania: @Model.Recipe.Date</h5>
@@ -29,20 +30,26 @@
     {
         @if (item.Link != null)
         {
-            <img src="@item.Link" style="width:200px;height:200px;"/>
+            <img src="@item.Link" style="width:200px;height:200px;" />
         }
         else if (item.Path != null)
         {
-             <img src="~/images/@item.Path" style="width:200px;height:200px;"/>
+            <img src="~/images/@item.Path" style="width:200px;height:200px;" />
         }
         else
-        {}
+        { }
     }
 </div>
 <h4 class="text-center mt-4">Kategorie:</h4>
 @*<div class="container">
-    @foreach(var item in Model.CategoriesList)
-            {
-        <a asp-page="/AddACategory/Details" asp-route-id="@item.Id">@item.CategoryName</a>
-            }
-</div>*@
+        @foreach(var item in Model.CategoriesList)
+                {
+            <a asp-page="/AddACategory/Details" asp-route-id="@item.Id">@item.CategoryName</a>
+                }
+    </div>*@
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="row justify-content-center">
+    <button name="fav" asp-action="Check">Dodaj do ulubionych</button>
+</div>
+}
