@@ -15,6 +15,8 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
         public Recipe Recipe { get; set; }
         public List<Photography>Photos { get; set; }
+        public List<Category> CategoriesList { get; set; }
+        public List<RecipeCategory> RecipeCategories { get; set; }
         public string UserId { get; set; }
 
         public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
@@ -37,7 +39,16 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
 
             Photos = _context.PhotoGallery.Where(a => a.Recipe.Id == id).ToList<Photography>();
-            //UserId = Recipe.User.Id;
+            //RecipeCategories = await _context.RecipeCategories
+            //    .Include(r => r.Category)
+            //    .Include(r => r.Recipe).Where(b=>b.RecipeId == id).ToListAsync();
+            //foreach(var item in RecipeCategories) // Problem z pobraniem kategorii dzięki id z recipecategory
+            //{
+
+            //    var temp = (Category)_context.Categories.Where(c => c.Id == item.Category.Id);
+            //    CategoriesList.Add(temp);
+            //}
+            //UserId = Recipe.User.Id; // Problem z pobraniem id użytkownika z przepisu
 
             return Page();
         }

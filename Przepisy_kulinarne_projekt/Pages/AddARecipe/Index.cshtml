@@ -13,26 +13,6 @@
 </p>
 <a asp-page="Index">Pokaż wszystkie rekordy</a>
 <table class="table">
-    @*<thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Ingredients)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Steps)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Rating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Recipe[0].Date)
-                </th>
-                <th></th>
-            </tr>
-        </thead>*@
     <thead>
         <tr>
             <th>
@@ -54,17 +34,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.RecipeName)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Ingredients)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Steps)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
-                        <a class="nav-link text-dark" asp-area="" asp-page="/PersonPage" asp-route-id="@item.User.UserName" title="Manage">@Html.DisplayFor(modelItem => item.User.UserName)</a>
+                        <a class="nav-link" asp-area="" asp-page="/PersonPage" asp-route-id="@item.User.UserName" title="Sprawdź profil użytkownika">@Html.DisplayFor(modelItem => item.User.UserName)</a>
                 </td>
                 <td>
                     <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>

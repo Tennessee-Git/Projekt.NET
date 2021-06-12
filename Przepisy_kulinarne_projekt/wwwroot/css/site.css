@@ -9,7 +9,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #FF0000;
+    color: #000099;
 }
 
 .btn-primary {
@@ -73,39 +73,17 @@ body {
 .card {
     height: 80px;
     width: 100px;
-    background: #800080;
+    background: #ccccff;
 }
 
 .card-body {
     height: 80px;
     width: 100px;
-    background: #800080;
+    background: #ccccff;
 }
 
 .card-columns .card-body {
     height: 80px;
     width: 100px;
-    background: #800080;
-}
-
-.card-columns .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
-}
-
-.card-columns .card-img {
-    height: 330px;
-    vertical-align: bottom;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    opacity: .8;
-}
-
-.modal .card-img {
-    height: 500px;
-    vertical-align: bottom;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background: #ccccff;
 }
