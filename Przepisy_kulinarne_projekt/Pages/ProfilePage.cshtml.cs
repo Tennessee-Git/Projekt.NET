@@ -28,7 +28,7 @@ namespace Przepisy_kulinarne_projekt.Areas.Identity.Pages.Account.Manage
         public async Task OnGetAsync()
         {
             IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
-            Recipes = _context.Recipes.Where(b => b.User == user).ToList<Recipe>();
+            Recipes = _context.Recipes.Where(b => b.User == user).OrderByDescending(d=>d.Date).ToList<Recipe>();
             FavouriteRecipes = _context.FavouriteRecipes.Where(c => c.User == user).ToList<FavouriteRecipe>();
         }
         

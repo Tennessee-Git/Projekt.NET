@@ -10,9 +10,15 @@
     <h1>@Model.Recipe.RecipeName  </h1>
     @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit == true)
     {
-        <a class="nav-item nav-link mt-1" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
-            <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;" />
-        </a>
+<div class="row">
+    <a class="nav-item nav-link mt-1 col-7" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
+        <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;" />
+    </a>
+    <a class="nav-item nav-link mt-1 col-1" asp-area="" asp-page="/AddARecipe/Delete" asp-route-id="@Model.Recipe.Id" title="Usuń przepis">
+        <img src="~/images/icons/trash-alt-regular.svg" style="float:right;width:30px;height:30px;"/>
+    </a>
+</div>
+        
     }
 </div>
 

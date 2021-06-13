@@ -35,7 +35,7 @@ namespace Przepisy_kulinarne_projekt.Pages
             }
 
             ViewData["Person"] = id;
-            Recipes = _context.Recipes.Where(b => b.User.UserName == id).ToList<Recipe>();
+            Recipes = _context.Recipes.Where(b => b.User.UserName == id).OrderByDescending(d => d.Date).ToList<Recipe>();
 
             return Page();
         }

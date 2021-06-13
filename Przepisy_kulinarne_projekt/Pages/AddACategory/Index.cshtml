@@ -2,13 +2,15 @@
 @model Przepisy_kulinarne_projekt.Pages.AddACategory.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategorie";
 }
+@inject SignInManager<IdentityUser> SignInManager
 
-<h1>Index</h1>
+<h1>Wykaz kategorii</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    Jeżeli nie ma kategorii, która cię interesuje,
+    <a asp-page="Create">dodaj nową</a>.
 </p>
 <table class="table">
     <thead>
@@ -20,17 +22,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

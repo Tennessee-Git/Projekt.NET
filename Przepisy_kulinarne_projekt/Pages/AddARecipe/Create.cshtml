@@ -5,9 +5,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Dodaj nowy przepis do bazy<br /></h1>
+<h1>Dodaj nowy przepis<br /></h1>
 <hr />
-<h4>Przepis</h4>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -27,18 +26,8 @@
                 <input asp-for="Recipe.Steps" class="form-control" />
                 <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Recipe.Rating" class="control-label"></label>
-                <input asp-for="Recipe.Rating" class="form-control" />
-                <span asp-validation-for="Recipe.Rating" class="text-danger"></span>
-            </div>
             <div class="form-group">
-                <label asp-for="Recipe.Date" class="control-label"></label>
-                <input asp-for="Recipe.Date" class="form-control" />
-                <span asp-validation-for="Recipe.Date" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Dodaj przepis" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>

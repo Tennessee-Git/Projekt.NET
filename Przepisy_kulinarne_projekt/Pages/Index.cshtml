@@ -4,12 +4,19 @@
     ViewData["Title"] = "Home page";
 }
 
-<div>
-
+<h1 class="mt-3 text-center">Top 10 przepiów:</h1>
+<div class="card-columns">
+    @foreach (var item in Model.Recipes)
+    {
+    <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
+        <div class="card">
+            <h5 class="card-body text-center">@item.RecipeName</h5>
+        </div>
+    </a>
+    }
 </div>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
     <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipe/Index"><button type="submit" class="btn btn-secondary">Wszystkie przepisy</button></a>
     <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipe/Create"><button type="submit" class="btn btn-secondary">Dodaj przepis</button></a>
     <a class="nav-link text-dark" asp-area="" asp-page="/AddACategory/Index"><button type="submit" class="btn btn-secondary">Zarządzanie kategoriami</button></a>
