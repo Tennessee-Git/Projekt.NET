@@ -103,7 +103,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + Picture.FileName;
-                string filePath = Path.Combine("wwwroot/images/", uniqueFileName);
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath,FileMode.Create))
                 {
                     Picture.CopyTo(fileStream);
