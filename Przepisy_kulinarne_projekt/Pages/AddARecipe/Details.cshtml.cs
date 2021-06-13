@@ -14,7 +14,6 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
     public class DetailsModel : PageModel
     {
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
         public Recipe Recipe { get; set; }
         public List<Photography>Photos { get; set; }
         public List<RecipeCategory> RecipeCategories { get; set; }
@@ -22,10 +21,9 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         public bool AbleToEdit = false;
         public FavouriteRecipe FavRecipe { get; set; }
 
-        public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -43,11 +41,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
 
             Photos = _context.PhotoGallery.Where(a => a.Recipe.Id == id).ToList<Photography>();
-            RecipeCategories = await _context.RecipeCategories
-                .Include(r => r.Category)
-                .Include(r => r.Recipe).Where(b => b.RecipeId == id).ToListAsync();
-
-
+            
             if (HttpContext.User.Identity.Name == Recipe.User.UserName)
                 AbleToEdit = true;
 
@@ -63,9 +57,5 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             return Page();
         }
 
-        //public IActionResult Check()
-        //{
-        //    FavouriteRecipe fav = new FavouriteRecipe(Recipe,_userManager.GetUserAsync(HttpContext.User));
-        //}
     }
 }

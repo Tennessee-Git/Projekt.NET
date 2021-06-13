@@ -11,7 +11,10 @@
 <h4>Przepis</h4>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
+            <input hidden asp-for="Photo.Path" />
+            <input hidden asp-for="Recipe.Id" />
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Recipe.Id" />
             <div class="form-group">
@@ -30,6 +33,17 @@
                 <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">Dodaj zdjęcie z komputera</label>
+                <div class="custom-file">
+                    <input asp-for="Picture" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Wybierz plik</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Dodaj zdjęcie jako link</label>
+                <input asp-for="Photo.Link" class="form-control" />
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
@@ -42,4 +56,10 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+</script>
 }
