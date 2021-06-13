@@ -20,32 +20,24 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         }
 
         public IList<Recipe> Recipe { get;set; }
+        [BindProperty(SupportsGet =true)]
+        public string SearchTerm { get; set; }
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Recipe = await _context.Recipes.Include(r => r.User).ToListAsync();
-            
-
-
+            if(SearchTerm ==null)
+            {
+                Recipe = _context.Recipes.Include(r => r.User).OrderByDescending(d => d.Date).ToList();
+            }
+            else
+            {
+                Recipe = _context.Recipes
+                    .Include(r => r.User)
+                    .Include(r=>r.RecipeCategories).ThenInclude(r=>r.Category)
+                    .Where(e => e.RecipeName.Contains(SearchTerm)
+                                                || e.User.UserName.Contains(SearchTerm)
+                ).OrderByDescending(d => d.Date).ToList();
+            }
         }
-        public void OnPost(string searchrecipe)
-        {
-            ViewData["GetRecipe"] = searchrecipe;
-            Recipe = (from item in _context.Recipes
-                              where (item.RecipeName.Contains(searchrecipe) || item.User.UserName.Contains(searchrecipe))
-                              select item).ToList();
-        }
-
-
-
-        //public void OnPost(string searchcategory)
-        //{
-        //    ViewData["GetRecipe"] = searchcategory;
-        //    RecipeCategory = (from item in _context.Recipes_Categories
-        //                      .Include(r => r.Category)
-        //                        .Include(r => r.Recipe)
-        //                      where (item.Category.CategoryName.Contains(searchcategory))
-        //                      select item).ToList();
-        //    Category = _context.Categories.ToList();
     }
 }
