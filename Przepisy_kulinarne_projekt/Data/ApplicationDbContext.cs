@@ -25,6 +25,16 @@ namespace Przepisy_kulinarne_projekt.Data
               .HasOne(b => b.Category)
               .WithMany(ba => ba.RecipeCategories)
               .HasForeignKey(bi => bi.CategoryId);
+
+            modelBuilder.Entity<FavouriteRecipe>()
+              .HasOne(b => b.Recipe)
+              .WithMany(ba => ba.FavouriteRecipes)
+              .HasForeignKey(bi => bi.RecipeId);
+
+            modelBuilder.Entity<FavouriteRecipe>()
+              .HasOne(b => b.User)
+              .WithMany(ba => ba.FavouriteRecipes)
+              .HasForeignKey(bi => bi.UserId);
         }
 
         public DbSet<Category> Categories { get; set; }

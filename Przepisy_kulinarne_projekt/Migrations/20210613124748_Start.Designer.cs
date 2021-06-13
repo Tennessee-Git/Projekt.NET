@@ -10,8 +10,8 @@ using Przepisy_kulinarne_projekt.Data;
 namespace Przepisy_kulinarne_projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210611175605_Poprawka")]
-    partial class Poprawka
+    [Migration("20210613124748_Start")]
+    partial class Start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
