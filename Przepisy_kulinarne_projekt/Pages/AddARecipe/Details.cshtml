@@ -1,10 +1,12 @@
 ﻿@page
 @model Przepisy_kulinarne_projekt.Pages.AddARecipe.DetailsModel
-
+<link href="~/css/rateit.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 @{
     ViewData["Title"] = "Details";
 }
 <h1>@Html.DisplayFor(model => model.Recipe.RecipeName)</h1>
+
 
 <div>
     <hr />
@@ -45,11 +47,30 @@
     <a asp-page="./Edit" asp-route-id="@Model.Recipe.Id">
         <button type="button" class="btn btn-warning">Edytuj przepis</button>
     </a>
+    <form method="post">
+        <td>
+            <div class="center">
+                <p>
+                </p><div class="input-group">
+                    <span class="input-group-btn">
+                        <button asp-page="./Minus" type="submit" value="first" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]" >
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input id="RatingID" type="text" name="quant[2]" class="form-control input-number" value="@Model.Recipe.Rating" min="-100" max="100" disabled>
+                    <span class="input-group-btn">
+                        <button asp-area="" asp-page="./Plus" type="submit" value="second" class="btn btn-success btn-number" data-type="plus" onclick="location.href=/Plus">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+
+                    </span>
+               
+                </div>
+                <p></p>
+            </div>
+        </td>
+    </form>
+
 </div>
 <br />
 <a asp-page="./Index">Wróć do listy przepisów</a>
-
-
-
-
-

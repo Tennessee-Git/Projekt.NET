@@ -25,12 +25,36 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         {
             Recipe = await _context.Recipes.ToListAsync();
         }
+
+
+
         public void OnPost(string searchrecipe)
         {
             ViewData["GetRecipe"] = searchrecipe;
             Recipe = (from item in _context.Recipes
                               where (item.RecipeName.Contains(searchrecipe))
                               select item).ToList();
+        }
+
+
+        public void Minus_klik()
+        {
+            
+
+            //_context.Recipes.Find()
+        }
+        public void UpdateRating(int recipeID, int ratingValue)
+        {
+            var recipe = _context.Recipes.Where(x => x.Id == recipeID).FirstOrDefault();
+            if (recipe != null)
+            {
+                recipe.Rating = ratingValue+1;
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Nie znaleziono takiego przepisu o zadanym ID!");
+            }
         }
         //public void OnPost(string searchcategory)
         //{

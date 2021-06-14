@@ -1,14 +1,53 @@
 ﻿@page
 @model IndexModel
+    <link href="~/css/button.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipe/Index"><button type="submit" class="btn btn-secondary">Wszystkie przepisy</button></a>
-    <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipe/Create"><button type="submit" class="btn btn-secondary">Dodaj przepis</button></a>
-    <a class="nav-link text-dark" asp-area="" asp-page="/AddACategory/Index"><button type="submit" class="btn btn-secondary">Zarządzanie kategoriami</button></a>
-    <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipeCategory/Index"><button type="submit" class="btn btn-secondary">Kategorie z przepisami</button></a>
+    <div id="centrada">
+        <h1 class="display-4">Welcome</h1>
+        <div class="cube flip-to-top">
+            <div class="default-state linkedin">
+                <a asp-area="" asp-page="/AddARecipe/Index">Wszystkie przepisy</a>
+            </div>
+            <div class="active-state linkedin">
+                <a asp-area="" asp-page="/AddARecipe/Index">Jak Smacznie!</a>
+            </div>
+        </div>
 
+        <div class="cube flip-to-top">
+            <div class="default-state facebook">
+                <a asp-area="" asp-page="/AddARecipe/Create">Dodaj przepis</a>
+            </div>
+            <div class="active-state facebook">
+                <span><a asp-area="" asp-page="/AddARecipe/Create">Podziel sie!</a></span>
+            </div>
+        </div>
+
+        <div class="cube flip-to-top">
+            <div class="default-state facebook">
+                <a asp-area="" asp-page="/AddACategory/Index">Zarzadzanie kategoriami</a>
+            </div>
+            <div class="active-state facebook">
+                <span><a asp-area="" asp-page="/AddACategory/Index">Zrob to po swojemu!</a></span>
+            </div>
+        </div>
+
+        <div class="cube flip-to-top">
+            <div class="default-state facebook">
+                <a asp-area="" asp-page="/AddARecipeCategory/Index">Kategorie z przepisami</a>
+            </div>
+            <div class="active-state facebook">
+                <a asp-area="" asp-page="/AddARecipeCategory/Index"> To czego szukasz!</a>
+            </div>
+        </div>
+
+
+        @*<a class="nav-link text-dark" asp-area="" asp-page="/AddARecipe/Create"><button type="submit" class="btn btn-secondary">Dodaj przepis</button></a>
+        <a class="nav-link text-dark" asp-area="" asp-page="/AddACategory/Index"><button type="submit" class="btn btn-secondary">Zarządzanie kategoriami</button></a>
+        <a class="nav-link text-dark" asp-area="" asp-page="/AddARecipeCategory/Index"><button type="submit" class="btn btn-secondary">Kategorie z przepisami</button></a>
+        *@
+    </div>
 </div>

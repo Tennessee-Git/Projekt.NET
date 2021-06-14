@@ -36,5 +36,35 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
             return Page();
         }
+
+        public async Task<IActionResult> OnPost(int? id, bool bot)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Recipe = await _context.Recipes.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Recipe == null)
+            {
+                return NotFound();
+            }
+
+            if (bot == true)
+            {
+                Recipe.Rating++;
+            }
+            else
+            {
+                Recipe.Rating--;
+            }
+
+            await _context.SaveChangesAsync();
+            return Page();
+            
+        }
+
+
     }
 }

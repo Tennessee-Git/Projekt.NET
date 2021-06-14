@@ -8,7 +8,11 @@ namespace Przepisy_kulinarne_projekt.Models
 {
     public class Recipe
     {
-
+        public Recipe()
+        {
+            this.Rating = default;
+            this.RecipeCategories = new List<RecipeCategory>();
+        }
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Podaj nazwę przepisu")]
@@ -29,6 +33,7 @@ namespace Przepisy_kulinarne_projekt.Models
         [Display(Name = "Data dodania")]
         public DateTime Date { get; set; }
 
+        
 
         public List<RecipeCategory> RecipeCategories { get; set; }
 

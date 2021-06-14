@@ -6,6 +6,7 @@
 }
 <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/css/rateit.css" rel="stylesheet" />
 </head>
 
 <h1>Baza wszystkich przepisów</h1>
@@ -49,44 +50,46 @@
         <tbody>
             @foreach (var item in Model.Recipe)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RecipeName)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Ingredients)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Steps)
-                        </td>*@
-                    <td>
-                        <div class="center">
-                            <p>
-                            </p><div class="input-group">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                        <span class="glyphicon glyphicon-minus"></span>
-                                    </button>
-                                </span>
-                                <input type="text" name="quant[2]" class="form-control input-number" value="@Html.DisplayFor(modelItem => item.Rating)" min="-100" max="100" disabled>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                </span>
-                            </div>
-                            <p></p>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipeName)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Ingredients)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Steps)
+        </td>*@
+                <td>
+                    <div class="center">
+                        <p>
+                        </p><div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]" onclick="changeRatingValue(false)">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input id="RatingID" type="text" name="quant[2]" class="form-control input-number" value="@Html.DisplayFor(modelItem => item.Rating)" min="-100" max="100" disabled>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]" onclick="changeRatingValue(true)">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+
+                                <input type="submit" value="Wyślij wiadomość" class="btn btn-primary" />
+                            </span>
                         </div>
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>*@
-                    <td>
-                        <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
-                        <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
-                        <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
-                    </td>
-                </tr>
+                        <p></p>
+                    </div>
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>*@
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edytuj przepis</button></a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Usuń przepis</button></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -94,3 +97,18 @@
 <p>
     <a asp-page="Create"><button type="button" class="btn btn-primary">Dodaj nowy przepis</button></a>
 </p>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    function changeRatingValue(isPlus) {
+        var ratingValue = $('#RatingID').val();
+        if (!isPlus) {
+            $('#RatingID').val(ratingValue--);
+        }
+        else {
+            $('#RatingID').val(ratingValue++);
+        }
+    }
+</script>
+

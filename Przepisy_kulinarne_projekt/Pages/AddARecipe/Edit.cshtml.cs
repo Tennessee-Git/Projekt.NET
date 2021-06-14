@@ -75,5 +75,20 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         {
             return _context.Recipes.Any(e => e.Id == id);
         }
+
+        public void UpdateRating(int recipeID, int ratingValue)
+        {
+            var recipe = _context.Recipes.Where(x => x.Id == recipeID).FirstOrDefault();
+            if (recipe != null)
+            {
+                recipe.Rating = ratingValue + 1;
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Nie znaleziono takiego przepisu o zadanym ID!");
+            }
+        }
+
     }
 }
