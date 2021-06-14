@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,12 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             {
                 _context.PhotoGallery.Remove(Photo);
                 await _context.SaveChangesAsync();
+                if(Photo.Path!= null)
+                {
+                    string pathToRemove = "wwwroot/images/" + Photo.Path;
+                    if(System.IO.File.Exists(pathToRemove))
+                    System.IO.File.Delete(pathToRemove);
+                }
             }
 
             return RedirectToPage("./Index");
