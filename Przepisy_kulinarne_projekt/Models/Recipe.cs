@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Przepisy_kulinarne_projekt.Models
 {
@@ -16,14 +17,17 @@ namespace Przepisy_kulinarne_projekt.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Podaj nazwę przepisu")]
-        [Display(Name = "Nazwa przepisu")]
-        public string RecipeName { get; set; }
+        [MaxLength(50)]
+        [Display(Name= "Nazwa przepisu")]
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Podaj składniki")]
-        [Display(Name = "Potrzebne składniki")]
+        [MaxLength(350)]
+        [Display(Name = "Składniki")]
         public string Ingredients { get; set; }
 
-        [Required(ErrorMessage = "Podaj opis wykonania")]
+        [Required(ErrorMessage ="Podaj kroki wykonania")]
+        [MaxLength(1000)]
         [Display(Name = "Opis wykonania")]
         public string Steps { get; set; }
 
@@ -31,11 +35,12 @@ namespace Przepisy_kulinarne_projekt.Models
         public int Rating { get; set; }
 
         [Display(Name = "Data dodania")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        
 
         public List<RecipeCategory> RecipeCategories { get; set; }
-
+        public IdentityUser User { get; set; }
+        public List<Photography> PhotoGallery { get; set; }
     }
 }

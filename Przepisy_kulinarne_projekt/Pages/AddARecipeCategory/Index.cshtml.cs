@@ -24,7 +24,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
 
         public async Task OnGetAsync()
         {
-            RecipeCategory = await _context.Recipes_Categories
+            RecipeCategory = await _context.RecipeCategories
                 .Include(r => r.Category)
                 .Include(r => r.Recipe).ToListAsync();
             Category = await _context.Categories.ToListAsync();
@@ -33,7 +33,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
 
         public void OnPost(int searchcategory)
         {
-            RecipeCategory = (from item in _context.Recipes_Categories
+            RecipeCategory = (from item in _context.RecipeCategories
                               .Include(r => r.Category)
                                 .Include(r => r.Recipe)
                               where (item.Category.Id == searchcategory)

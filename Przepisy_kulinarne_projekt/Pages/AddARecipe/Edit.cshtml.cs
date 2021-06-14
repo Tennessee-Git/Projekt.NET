@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -24,6 +25,8 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
 
         [BindProperty]
         public Recipe Recipe { get; set; }
+
+        public Photography Photo { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

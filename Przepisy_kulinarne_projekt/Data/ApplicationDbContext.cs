@@ -11,8 +11,7 @@ namespace Przepisy_kulinarne_projekt.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-        }
+        {}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,9 +27,10 @@ namespace Przepisy_kulinarne_projekt.Data
               .HasForeignKey(bi => bi.CategoryId);
         }
 
-        public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        public DbSet<RecipeCategory> Recipes_Categories { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<FavouriteRecipe> FavouriteRecipes { get; set; }
+        public DbSet<RecipeCategory> RecipeCategories { get; set; }
+        public DbSet<Photography> PhotoGallery { get; set; }
     }
 }

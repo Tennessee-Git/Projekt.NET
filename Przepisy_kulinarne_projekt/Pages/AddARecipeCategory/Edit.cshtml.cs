@@ -32,7 +32,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
                 return NotFound();
             }
 
-            RecipeCategory = await _context.Recipes_Categories
+            RecipeCategory = await _context.RecipeCategories
                 .Include(r => r.Category)
                 .Include(r => r.Recipe).FirstOrDefaultAsync(m => m.Id == id);
 
@@ -77,7 +77,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
 
         private bool RecipeCategoryExists(int id)
         {
-            return _context.Recipes_Categories.Any(e => e.Id == id);
+            return _context.RecipeCategories.Any(e => e.Id == id);
         }
     }
 }

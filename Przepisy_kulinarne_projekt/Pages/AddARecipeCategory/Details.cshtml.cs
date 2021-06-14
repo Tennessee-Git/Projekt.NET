@@ -28,7 +28,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
                 return NotFound();
             }
 
-            RecipeCategory = await _context.Recipes_Categories
+            RecipeCategory = await _context.RecipeCategories
                 .Include(r => r.Category)
                 .Include(r => r.Recipe).FirstOrDefaultAsync(m => m.Id == id);
 

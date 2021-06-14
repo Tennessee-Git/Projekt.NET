@@ -1,76 +1,40 @@
 ﻿@page
 @model Przepisy_kulinarne_projekt.Pages.AddARecipe.DetailsModel
-<link href="~/css/rateit.css" rel="stylesheet" />
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły przepisu";
 }
-<h1>@Html.DisplayFor(model => model.Recipe.RecipeName)</h1>
-
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.RecipeName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.RecipeName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Ingredients)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Ingredients)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Steps)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Steps)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Rating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Rating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Date)
-        </dd>
-    </dl>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<div class="row text-center justify-content-center mt-5">
+    <h1>@Model.Recipe.Name  </h1>
+    @if (SignInManager.IsSignedIn(User) && UserManager.GetUserId(HttpContext.User) == Model.UserId)
+    {
+        <a class="nav-item nav-link mt-1" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
+            <img src="~/images/gear.svg" style="float:right;width:30px;height:30px;"/>
+        </a>
+    }
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Recipe.Id">
-        <button type="button" class="btn btn-warning">Edytuj przepis</button>
-    </a>
-    <form method="post">
-        <td>
-            <div class="center">
-                <p>
-                </p><div class="input-group">
-                    <span class="input-group-btn">
-                        <button asp-page="./Minus" type="submit" value="first" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]" >
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                    </span>
-                    <input id="RatingID" type="text" name="quant[2]" class="form-control input-number" value="@Model.Recipe.Rating" min="-100" max="100" disabled>
-                    <span class="input-group-btn">
-                        <button asp-area="" asp-page="./Plus" type="submit" value="second" class="btn btn-success btn-number" data-type="plus" onclick="location.href=/Plus">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
 
-                    </span>
-               
-                </div>
-                <p></p>
-            </div>
-        </td>
-    </form>
-
+<div class="text-center mt-1">
+    <h5>Data dodania: @Model.Recipe.Date</h5>
+    <h4 class="mt-4">Składniki: @Model.Recipe.Ingredients</h4>
+    <h4 class="mt-4">Sposób wykonania: @Model.Recipe.Steps</h4>
+    <h4 class="mt-4">Ocena: @Model.Recipe.Rating</h4>
+    <h4 class="mt-4">Galeria zdjęć:</h4>
 </div>
-<br />
-<a asp-page="./Index">Wróć do listy przepisów</a>
+
+<div class="container">
+    @foreach (var item in Model.Photos)
+    {
+        @if (item.Link != null)
+        {
+            <img src="@item.Link" style="width:200px;height:200px;"/>
+        }
+        else if (item.Path != null)
+        {
+             <img src="~/images/@item.Path" style="width:200px;height:200px;"/>
+        }
+        else
+        {}
+    }
+</div>

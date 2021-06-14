@@ -31,7 +31,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
                 return NotFound();
             }
 
-            RecipeCategory = await _context.Recipes_Categories
+            RecipeCategory = await _context.RecipeCategories
                 .Include(r => r.Category)
                 .Include(r => r.Recipe).FirstOrDefaultAsync(m => m.Id == id);
 
@@ -49,11 +49,11 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
                 return NotFound();
             }
 
-            RecipeCategory = await _context.Recipes_Categories.FindAsync(id);
+            RecipeCategory = await _context.RecipeCategories.FindAsync(id);
 
             if (RecipeCategory != null)
             {
-                _context.Recipes_Categories.Remove(RecipeCategory);
+                _context.RecipeCategories.Remove(RecipeCategory);
                 await _context.SaveChangesAsync();
             }
 

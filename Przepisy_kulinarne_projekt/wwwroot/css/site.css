@@ -9,7 +9,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #FF0000;
 }
 
 .btn-primary {
@@ -70,8 +70,42 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.center {
-    position: relative;
-    width: 120px;
-    margin-left: 10px auto;
+.card {
+    height: 80px;
+    width: 100px;
+    background: #800080;
+}
+
+.card-body {
+    height: 80px;
+    width: 100px;
+    background: #800080;
+}
+
+.card-columns .card-body {
+    height: 80px;
+    width: 100px;
+    background: #800080;
+}
+
+.card-columns .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
+}
+
+.card-columns .card-img {
+    height: 330px;
+    vertical-align: bottom;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    opacity: .8;
+}
+
+.modal .card-img {
+    height: 500px;
+    vertical-align: bottom;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
