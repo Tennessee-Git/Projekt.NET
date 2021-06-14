@@ -10,6 +10,6 @@ namespace Przepisy_kulinarne_projekt.Data
     public class ApplicationUser : IdentityUser
     {
         public ICollection<Recipe> Recipes { get; set; }
-        public ICollection<FavouriteRecipe> FavouriteRecipes { get; set; }
+        public List<FavouriteRecipe> FavouriteRecipes { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 @model Przepisy_kulinarne_projekt.Pages.AddARecipe.EditModel
 
 @{
-    ViewData["Title"] = "Edycja";
+    ViewData["Title"] = "Edycja przepisu";
 }
 
-<h1>Edycja przepisu</h1>
+<h1>Edytuj przepis</h1>
 
 <hr />
 <div class="row">
@@ -42,6 +42,24 @@
                 <label class="control-label">Dodaj zdjęcie jako link</label>
                 <input asp-for="Photo.Link" class="form-control" />
             </div>
+            <div class="row mb-5">
+                @foreach (var item in Model.Photos)
+                {
+                <div class="img-with-text">
+                    @if (item.Link != null)
+                    {
+                        <img src="@item.Link" style="width:100px;height:100px;" />
+                    }
+                    else if (item.Path != null)
+                    {
+                        <img src="~/images/@item.Path" style="width:100px;height:100px;" />
+                    }
+                    else
+                    { }
+                    <a asp-area="" asp-page="/AddARecipe/DeletePhoto" asp-route-id="@item.Id" style="color:red">Delete</a>
+                </div>
+                }
+            </div>
             <div class="form-group">
                 <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
@@ -49,9 +67,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Wróć do listy przepisów</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

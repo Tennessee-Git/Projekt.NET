@@ -33,6 +33,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
         public IFormFile Picture { get; set; }
         [BindProperty]
         public Photography Photo { get; set; }
+        public List<Photography> Photos { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -42,6 +43,7 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             }
 
             Recipe = await _context.Recipes.FirstOrDefaultAsync(m => m.Id == id);
+            Photos = _context.PhotoGallery.Where(a => a.Recipe.Id == id).ToList<Photography>();
 
             if (Recipe == null)
             {

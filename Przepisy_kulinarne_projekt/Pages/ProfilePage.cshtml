@@ -16,8 +16,13 @@
     @foreach (var item in Model.Recipes)
     {
     <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
-        <div class="card">
-            <h5 class="card-body text-center">@item.RecipeName</h5>
+        <div class="card text-center">
+            <div class="card-body text-center ">
+                <h5 class="card-title row">@item.RecipeName</h5>
+                <div class="card-text row d-flex">
+                    <p>@item.Date</p>
+                </div>
+            </div>
         </div>
     </a>
     }

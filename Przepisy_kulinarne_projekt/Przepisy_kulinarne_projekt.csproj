@@ -8,6 +8,16 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210610090634_Zmiana_na_listy2.cs" />
     <Compile Remove="Migrations\20210610090634_Zmiana_na_listy2.Designer.cs" />
+    <Compile Remove="Migrations\20210613115715_AddFavRecipes.cs" />
+    <Compile Remove="Migrations\20210613115715_AddFavRecipes.Designer.cs" />
+    <Compile Remove="Migrations\20210613120159_AddFavRecipes.cs" />
+    <Compile Remove="Migrations\20210613120159_AddFavRecipes.Designer.cs" />
+    <Compile Remove="Migrations\20210613122449_AddFavRecipes.cs" />
+    <Compile Remove="Migrations\20210613122449_AddFavRecipes.Designer.cs" />
+    <Compile Remove="Migrations\20210613122934_AddFavRecipes.cs" />
+    <Compile Remove="Migrations\20210613122934_AddFavRecipes.Designer.cs" />
+    <Compile Remove="Migrations\20210613123153_AddFavRecipes2.cs" />
+    <Compile Remove="Migrations\20210613123153_AddFavRecipes2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

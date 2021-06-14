@@ -1,0 +1,24 @@
+﻿@page
+@model Przepisy_kulinarne_projekt.Pages.AddARecipe.DeletePhotoModel
+@{
+    ViewData["Title"] = "Usuwanie zdjęcia";
+}
+
+<h3>Czy jesteś pewny, że chcesz usunąć te zdjęcie?</h3>
+<div class="mb-5">
+    <hr />
+    @if (Model.Photo.Link != null)
+    {
+        <img src="@Model.Photo.Link" style="width:200px;height:200px;" />
+    }
+    else if (Model.Photo.Path != null)
+    {
+        <img src="~/images/@Model.Photo.Path" style="width:200px;height:200px;" />
+    }
+    else
+    { }
+    <form method="post">
+        <input type="hidden" asp-for="Photo.Id" />
+        <input type="submit" value="Usuń" class="btn btn-danger mt-2" />
+    </form>
+</div>
