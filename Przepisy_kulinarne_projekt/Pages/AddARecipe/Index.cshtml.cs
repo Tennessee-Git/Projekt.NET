@@ -28,14 +28,14 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
 
 
 
-        public void OnPost(string searchrecipe)
+       /* public void OnPost(string searchrecipe)
         {
             ViewData["GetRecipe"] = searchrecipe;
             Recipe = (from item in _context.Recipes
                               where (item.RecipeName.Contains(searchrecipe))
                               select item).ToList();
         }
-
+       */
 
         public void Minus_klik()
         {
