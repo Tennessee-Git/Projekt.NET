@@ -4,8 +4,9 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
+<h1>Edytuj</h1>
 
 <hr />
 <div class="row">
@@ -24,14 +25,14 @@
                 <span asp-validation-for="RecipeCategory.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="myButton" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a style="color: #1073b5;" asp-page="./Index">Wroc do listy kategorii</a>
 </div>
 
 @section Scripts {

@@ -3,39 +3,41 @@
 @{
     ViewData["Title"] = "Profil";
 }
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/karty.css" rel="stylesheet" />
 
 <div class="row text-center justify-content-center mt-5">
     <h1>@Model.User.Identity.Name  </h1>
     <a class="nav-item nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Edytuj profil">
-        <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;"/>
+        <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;" />
     </a>
 </div>
 
 <h5 class="mt-3">Twoje przepisy</h5>
-<div class="card-columns">
+<div class="card-group">
     @foreach (var item in Model.Recipes)
     {
-    <a class="nav-item nav-link" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
-        <div class="card text-center">
-            <div class="card-body text-center ">
-                <h5 class="card-title row">@item.RecipeName</h5>
-                <div class="card-text row d-flex">
-                    <p>@item.Date</p>
+        <a class="card2" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
+            <h3>@item.RecipeName </h3>
+            <p class="small"> @item.Date</p>
+            <div class="go-corner" href="#">
+                <div class="go-arrow">
+                    →
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
     }
 </div>
+
 
 <h5 class="mt-3">Ulubione przepisy</h5>
 <div class="card-columns">
     @foreach (var item in Model.FavouriteRecipes)
     {
-    <a class="nav-link nav-item" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
-        <div class="card text-center">
-            <h5 class="card-body">@item.Recipe.RecipeName</h5>
-        </div>
-    </a>
+        <a class="nav-link nav-item" asp-area="" asp-page="/AddARecipe/Details" asp-route-id="@item.Id" title="Szczegóły przepisu">
+            
+                <h3 class="card-body">@item.Recipe.RecipeName</h3>
+            
+        </a>
     }
 </div>

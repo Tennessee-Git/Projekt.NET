@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link href="~/css/table.css" rel="stylesheet" />
+
 
 <h1>Szczegóły kategorii</h1>
 
@@ -19,6 +21,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a style="color: #1073b5;" asp-page="./Edit" asp-route-id="@Model.Category.Id">Edytuj</a> |
+    <a style="color: #1073b5;" asp-page="./Index">Wroc do listy kategorii</a>
 </div>

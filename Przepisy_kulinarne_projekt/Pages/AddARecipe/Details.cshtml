@@ -6,20 +6,27 @@
 }
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<div class="row text-center justify-content-center mt-5">
-    <h1>@Model.Recipe.RecipeName  </h1>
+
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
+
+
+<div class="row text-left justify-content-lg-center mt-5">
     @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit == true)
     {
-<div class="row">
-    <a class="nav-item nav-link mt-1 col-7" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
-        <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;" />
-    </a>
-    <a class="nav-item nav-link mt-1 col-1" asp-area="" asp-page="/AddARecipe/Delete" asp-route-id="@Model.Recipe.Id" title="Usuń przepis">
-        <img src="~/images/icons/trash-alt-regular.svg" style="float:right;width:30px;height:30px;"/>
-    </a>
-</div>
-        
+        <div class="row">
+            <a class="myButtonv2" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
+                <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;" />
+            </a>
+            <a class="myButton2" asp-area="" asp-page="/AddARecipe/Delete" asp-route-id="@Model.Recipe.Id" title="Usuń przepis">
+                <img src="~/images/icons/trash-alt-regular.svg" style="float:right;width:30px;height:30px;" />
+            </a>
+        </div>
     }
+</div>
+
+<div class="row text-center justify-content-center mt-5">
+    <h1>@Model.Recipe.RecipeName </h1>
 </div>
 
 
@@ -28,47 +35,96 @@
     <h4 class="mt-4">Składniki: @Model.Recipe.Ingredients</h4>
     <h4 class="mt-4">Sposób wykonania: @Model.Recipe.Steps</h4>
     <h4 class="mt-4">Ocena: @Model.Recipe.Rating</h4>
-    <h4 class="mt-4">Galeria zdjęć:</h4>
-</div>
-
-<div class="container">
-    @foreach (var item in Model.Photos)
-    {
-        @if (item.Link != null)
-        {
-            <img src="@item.Link" style="width:200px;height:200px;" />
-        }
-        else if (item.Path != null)
-        {
-            <img src="~/images/@item.Path" style="width:200px;height:200px;" />
-        }
-        else
-        { }
-    }
 </div>
 <div class="row text-center justify-content-center">
+    <div class="center">
+        <p>
+        </p><div class="input-group">
+            <span class="input-group-btn">
+                <td>
+                    <a asp-page="./Minus" asp-route-id="@Model.Recipe.Id"><button type="submit" value="first" class="btn btn-danger btn-number" data-type="minus">-<span class="glyphicon glyphicon-minus"></span></button></a>
+                </td>
+            </span>
+            <input id="RatingID" type="text" name="quant[2]" class="form-control input-number" value="@Model.Recipe.Rating" min="-100" max="100" disabled>
+            <span class="input-group-btn">
+                <td>
+                    <a asp-page="./Plus" asp-route-id="@Model.Recipe.Id"><button type="submit" value="secund" class="btn btn-success btn-number" data-type="plus">+<span class="glyphicon glyphicon-plus"></span></button></a>
+                </td>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center justify-content-center">
     <h4 class="text-center mt-4">
-        Kategorie:
         @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit == true)
         {
-            <a asp-area="" asp-page="/AddARecipeCategory/Create">Dodaj kategorie</a>
+            <a style="color: #1073b5;" asp-area="" asp-page="/AddARecipeCategory/Create">Dodaj kategorie</a>
         }
+        <br>
+        Kategoria:
     </h4>
 </div>
 <div class="row justify-content-center">
-    @foreach(var item in Model.Categories)
-            {
-                <h5>@item.CategoryName&nbsp</h5>
-            }
+    @foreach (var item in Model.Categories)
+    {
+        <h5>@item.CategoryName&nbsp</h5>
+    }
 </div>
+
+
+
+@*  <div class="center">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button asp-page="./Minus" type="submit" value="first" class="btn btn-danger btn-number" data-field="quant[2]">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+
+            <input id="RatingID" type="text" name="quant[2]" class="form-control input-number" value="@Model.Recipe.Rating" min="-100" max="100" disabled>
+            <span class="input-group-btn">
+                <a asp-page="./Plus" asp-route-id="@item.Id">
+                    <button type="submit" value="second" class="btn btn-success btn-number" data-type="plus">
+                        <span class="glyphicon glyphicon-plus"></span> <a asp-area="" asp-page="./Plus"></a>
+                    </button>
+                </a>
+            </span>
+        </div>
+    </div> *@
+
+
 
 
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="row justify-content-center mt-4">
         <form method="post">
-            <button name="fav" asp-action="Check">Dodaj do ulubionych</button>
+            <button name="fav" class="btn btn-primary btn-info" asp-action="Check">Dodaj do ulubionych</button>
         </form>
 
     </div>
 }
+
+<div class="text-center mt-1">
+    <h2 class="mt-4">Galeria zdjęć:</h2>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        @foreach (var item in Model.Photos)
+        {
+            @if (item.Link != null)
+            {
+                <img src="@item.Link" style="width:200px;height:200px;" />
+            }
+            else if (item.Path != null)
+            {
+                <img src="~/images/@item.Path" style="width:200px;height:200px;" />
+            }
+            else
+            { }
+        }
+    </div>
+</div>
+

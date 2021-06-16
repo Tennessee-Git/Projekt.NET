@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
 <h1>Dodaj nową kategorię</h1>
 
@@ -18,14 +20,14 @@
                 <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="myButton1" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a style="color: #1073b5;" asp-page="Index">Wroc do listy kategorii.</a>
 </div>
 
 @section Scripts {

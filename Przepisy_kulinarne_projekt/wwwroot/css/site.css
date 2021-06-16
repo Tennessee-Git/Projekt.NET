@@ -100,3 +100,8 @@ body {
     }
 
 /*Navbar*/
+.center {
+    position: relative;
+    width: 120px;
+    margin-left: 10px auto;
+}

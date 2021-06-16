@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Usuwanie zdjęcia";
 }
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
-<h3>Czy jesteś pewny, że chcesz usunąć te zdjęcie?</h3>
+<h3>Czy jesteś pewny, że chcesz usunąć to zdjęcie?</h3>
 <div class="mb-5">
     <hr />
     @if (Model.Photo.Link != null)
@@ -19,6 +21,6 @@
     { }
     <form method="post">
         <input type="hidden" asp-for="Photo.Id" />
-        <input type="submit" value="Usuń" class="btn btn-danger mt-2" />
+        <input type="submit" value="Usuń" class="myButton2" />
     </form>
 </div>

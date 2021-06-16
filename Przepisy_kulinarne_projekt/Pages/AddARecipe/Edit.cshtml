@@ -4,7 +4,8 @@
 @{
     ViewData["Title"] = "Edycja przepisu";
 }
-
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
 <h1>Edytuj przepis</h1>
 
 <hr />
@@ -32,36 +33,36 @@
                 <span asp-validation-for="Recipe.Steps" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Dodaj zdjęcie z komputera</label>
+                <label style="color: #1073b5;" class="control-label">Dodaj zdjęcie z komputera</label>
                 <div class="custom-file">
                     <input asp-for="Picture" class="custom-file-input" id="customFile" />
-                    <label class="custom-file-label" for="customFile">Wybierz plik</label>
+                    <label style="color: #1073b5;" class="custom-file-label" for="customFile">Wybierz plik</label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label">Dodaj zdjęcie jako link</label>
+                <label style="color: #1073b5;" class="control-label">Dodaj zdjęcie jako link</label>
                 <input asp-for="Photo.Link" class="form-control" />
             </div>
             <div class="row mb-5">
                 @foreach (var item in Model.Photos)
                 {
-                <div class="img-with-text">
-                    @if (item.Link != null)
-                    {
-                        <img src="@item.Link" style="width:100px;height:100px;" />
-                    }
-                    else if (item.Path != null)
-                    {
-                        <img src="~/images/@item.Path" style="width:100px;height:100px;" />
-                    }
-                    else
-                    { }
-                    <a asp-area="" asp-page="/AddARecipe/DeletePhoto" asp-route-id="@item.Id" style="color:red">Delete</a>
-                </div>
+                    <div class="img-with-text">
+                        @if (item.Link != null)
+                        {
+                            <img src="@item.Link" style="width:100px;height:100px;" />
+                        }
+                        else if (item.Path != null)
+                        {
+                            <img src="~/images/@item.Path" style="width:100px;height:100px;" />
+                        }
+                        else
+                        { }
+                        <a asp-area="" asp-page="/AddARecipe/DeletePhoto" asp-route-id="@item.Id" style="color: #8f0707;">Delete</a>
+                    </div>
                 }
             </div>
             <div class="form-group">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="myButton" />
             </div>
         </form>
     </div>
@@ -70,10 +71,10 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script type="text/javascript">
+    <script type="text/javascript">
         $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
-</script>
+    </script>
 }

@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link href="~/css/table.css" rel="stylesheet" />
 
 <h1>Dodaj kategorię do przepisu</h1>
 
@@ -17,11 +18,11 @@
                 <select asp-for="RecipeCategory.RecipeId" class="form-control" asp-items="ViewBag.RecipeId"></select>
             </div>
             <div class="form-group">
-                    <label asp-for="RecipeCategory.CategoryId" class="control-label">Wybierz kategorię</label>
-                    <select asp-for="RecipeCategory.CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                <label asp-for="RecipeCategory.CategoryId" class="control-label">Wybierz kategorię</label>
+                <select asp-for="RecipeCategory.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Stworz" class="myButton1" />
             </div>
         </form>
     </div>

@@ -5,19 +5,24 @@
     ViewData["Title"] = "Baza wszystkich przepisów";
 }
 
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
+
+
+
 <h1>Baza wszystkich przepisów</h1>
 
 <form method="get">
     <div class="input-group mt-4 mb-4">
         <input class="form-control" placeholder="Wpisz nazwę przepisu lub autora" asp-for="SearchTerm" />
         <div class="input-group-append">
-            <button type="submit" class="btn btn-primary">Wyszukaj</button>
+            <button type="submit" class="myButton1">Wyszukaj</button>
         </div>
     </div>
 </form>
 
 <form method="post">
-<a asp-page="Index">Pokaż wszystkie rekordy</a>
+        <a style="color: #1073b5;" asp-page="Index" >Pokaż wszystkie rekordy</a>
 <table class="table">
     <thead>
         <tr>
@@ -43,11 +48,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
-                <td>
-                        <a class="nav-link" asp-area="" asp-page="/PersonPage" asp-route-id="@item.User.UserName" title="Sprawdź profil użytkownika">@Html.DisplayFor(modelItem => item.User.UserName)</a>
+                <td>  
+                        <a style="color: #1073b5;" class="nav-link" asp-area="" asp-page="/PersonPage" asp-route-id="@item.User.UserName"  title="Sprawdź profil użytkownika">@Html.DisplayFor(modelItem => item.User.UserName)</a>
                 </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="btn btn-success">Zobacz przepis</button></a>
+                    <a asp-page="./Details" asp-route-id="@item.Id"><button type="button" class="myButton">Zobacz przepis</button></a>
                 </td>
             </tr>
         }
@@ -55,5 +60,5 @@
 </table>
 </form>
 <p>
-    <a asp-page="Create"><button type="button" class="btn btn-primary">Dodaj nowy przepis</button></a>
+    <a asp-page="Create"><button type="button" class="myButton1">Dodaj nowy przepis</button></a>
 </p>
