@@ -6,45 +6,66 @@
 }
 <link href="~/css/table.css" rel="stylesheet" />
 <link href="~/css/buttonprzepis.css" rel="stylesheet" />
+<link href="~/css/droplist.css" rel="stylesheet" />
 
 <h1>Sortowanie według wybranej kategorii</h1>
 
-<form method="post">
-    <select name="searchcategory" asp-items="@(new SelectList(Model.Category, "Id","CategoryName")) ">
-        <option selected disabled>--Wybierz kategorię</option>
-    </select>
-    <input type="submit" value="Wybierz" />
-    <a style="color: #1073b5;" asp-page="Index">Pokaż wszystkie rekordy</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <h3>Kategoria</h3>
-                </th>
-                <th>
-                    <h3>Przepis</h3>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.RecipeCategory)
-            {
+<form method="post">  
+        <select class="theme-construction" name="searchcategory" asp-items="@(new SelectList(Model.Category, "Id","CategoryName")) ">
+            <option selected disabled>Wybierz kategorię</option>
+        </select>
+        <button type="submit" class="myButtonv2">Wybierz</button>
+        <a style="color: #1073b5;" asp-page="Index">Pokaż wszystkie rekordy</a>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Recipe.RecipeName)
-                    </td>
-                    <td>
-                        <a asp-page="/AddARecipe/Details" asp-route-id="@item.Recipe.Id"><button type="button" class="myButton1">Zobacz przepis</button></a>
-                        <a style="color: #1073b5;" asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="myButton2">Usuń</button></a>
-                    </td>
+                    <th>
+                        <h3>Kategoria</h3>
+                    </th>
+                    <th>
+                        <h3>Przepis</h3>
+                    </th>
+                    <th></th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecipeCategory)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Recipe.RecipeName)
+                        </td>
+                        <td>
+                            <a asp-page="/AddARecipe/Details" asp-route-id="@item.Recipe.Id"><button type="button" class="myButton1">Zobacz przepis</button></a>
+                            <a style="color: #1073b5;" asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="myButton2">Usuń</button></a>
+                        </td>
+                    </tr>
 
-            }
-        </tbody>
-    </table>
+                }
+            </tbody>
+        </table>
 </form>
 <a class="nav-link text-dark" asp-area="" asp-page="/AddACategory/Index"><button type="submit" class="myButton1">Zarządzanie kategoriami</button></a>
+
+@*    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h3>Kategoria</h3>
+            </th>
+            <th>
+                <h3>Przepis</h3>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <select name="searchcategory" asp-items="@(new SelectList(Model.Category, "Id","CategoryName")) ">
+        <option selected disabled>--Wybierz kategorię</option>
+    </select>
+*@
