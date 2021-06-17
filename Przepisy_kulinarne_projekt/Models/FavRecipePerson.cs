@@ -15,7 +15,7 @@ namespace Przepisy_kulinarne_projekt.Models
             public Recipe Recipe { get; set; }
 
             public string PersonId { get; set; }
-            public ApplicationUser Person { get; set; }
+            public IdentityUser Person { get; set; }
         
     }
 }

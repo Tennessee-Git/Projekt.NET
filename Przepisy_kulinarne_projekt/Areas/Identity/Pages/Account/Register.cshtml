@@ -3,12 +3,12 @@
 @{
     ViewData["Title"] = "Rejestracja";
 }
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/karty.css" rel="stylesheet" />
 
 <h1>@ViewData["Title"]</h1>
 <h4>Chcesz podzielić się z nami swoim przepisem?<br /> Dołącz do naszej społeczności.</h4>
-<div class="row">
 
-    <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
             <hr />
@@ -30,9 +30,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Zarejestruj konto</button>
         </form>
-    </div>
- 
-</div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

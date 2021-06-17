@@ -7,11 +7,8 @@
 <link href="~/css/table.css" rel="stylesheet" />
 <link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
-<h1>Połączone kategorie z przepisami</h1>
+<h1>Sortowanie według wybranej kategorii</h1>
 
-<p>
-    <a style="color: #1073b5;" asp-page="Create">Stworz nową</a>
-</p>
 <form method="post">
     <select name="searchcategory" asp-items="@(new SelectList(Model.Category, "Id","CategoryName")) ">
         <option selected disabled>--Wybierz kategorię</option>
@@ -22,10 +19,10 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.RecipeCategory[0].Recipe)
+                    <h3>Kategoria</h3>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.RecipeCategory[0].Category)
+                    <h3>Przepis</h3>
                 </th>
                 <th></th>
             </tr>
@@ -35,15 +32,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Recipe.RecipeName)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Category.CategoryName)
                     </td>
                     <td>
-                        <a style="color: #159726;" asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a> |
-                        <a style="color: #1073b5;" asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
-                        <a style="color: #8f0707;" asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                        @Html.DisplayFor(modelItem => item.Recipe.RecipeName)
+                    </td>
+                    <td>
+                        <a asp-page="/AddARecipe/Details" asp-route-id="@item.Recipe.Id"><button type="button" class="myButton1">Zobacz przepis</button></a>
+                        <a style="color: #1073b5;" asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="myButton2">Usuń</button></a>
                     </td>
                 </tr>
 

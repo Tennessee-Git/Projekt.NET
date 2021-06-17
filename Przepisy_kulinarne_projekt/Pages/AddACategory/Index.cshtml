@@ -5,41 +5,40 @@
     ViewData["Title"] = "Kategorie";
 }
 @inject SignInManager<IdentityUser> SignInManager
-    <link href="~/css/table.css" rel="stylesheet" />
-    <link href="~/css/buttonprzepis.css" rel="stylesheet" />
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
-    <h1>Wykaz kategorii</h1>
+<h1>Wykaz kategorii</h1>
 
-    <p>
-        Jeżeli nie ma kategorii, która cię interesuje,
-        <a style="color: #1073b5;" asp-page="Create">Dodaj nową kategorię</a>.
-    </p>
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Category)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category[0].CategoryName)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id"><button type="button" class="myButton1">Zmień nazwę</button></a>
+                <a asp-page="./Delete" asp-route-id="@item.Id"><button type="button" class="myButton2">Usuń kategorię</button></a>
+            </td>
+                }
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Category)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <td>
-                            <a style="color: #159726;" asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a> |
-                            <a style="color: #1073b5;" asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
-                            <a style="color: #8f0707;" asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
-                        </td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+<p>
+    <h4>Nie ma kategorii, która cię interesuje?</h4></br>
+    <a asp-page="./Create" ><button type="button" class="myButton1">Dodaj nową kategorię</button></a>
+</p>
 

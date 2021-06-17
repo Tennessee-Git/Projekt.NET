@@ -13,17 +13,22 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
 {
     public class DetailsModel : PageModel
     {
+        UserManager<IdentityUser> _userManager;
+
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
         public Recipe Recipe { get; set; }
         public List<Photography>Photos { get; set; }
         public List<RecipeCategory> RecipeCategories { get; set; }
         public List<Category>Categories { get; set; }
         public bool AbleToEdit = false;
-        public FavouriteRecipe FavRecipe { get; set; }
 
-        public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
+
+
+        public DetailsModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -55,6 +60,20 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipe
             Categories = CategoriesQuery.ToList<Category>();
 
             return Page();
+        }
+        [BindProperty]
+        public FavRecipePerson FavRecipe { get; set; }
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            
+            IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
+            //FavRecipe.Recipe = await _context.Recipes.Include(r => r.User).FirstOrDefaultAsync(m => m.Id == id);
+            FavRecipe.PersonId = user.Id;
+            _context.FavRecipes.Add(FavRecipe);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+
         }
 
     }

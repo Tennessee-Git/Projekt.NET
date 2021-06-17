@@ -18,6 +18,7 @@ namespace Przepisy_kulinarne_projekt.Areas.Identity.Pages.Account.Manage
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
         public List<Recipe> Recipes { get; set; }
         public List<FavouriteRecipe> FavouriteRecipes { get; set; }
+        public List<FavRecipePerson> FavRecipes { get; set; }
         
         public ProfilePageModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
@@ -29,8 +30,27 @@ namespace Przepisy_kulinarne_projekt.Areas.Identity.Pages.Account.Manage
         {
             IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
             Recipes = _context.Recipes.Where(b => b.User == user).OrderByDescending(d=>d.Date).ToList<Recipe>();
-            FavouriteRecipes = _context.FavouriteRecipes.Where(c => c.User == user).ToList<FavouriteRecipe>();
+            FavRecipes = _context.FavRecipes.Where(c => c.Person == user).ToList<FavRecipePerson>();
         }
-        
+        [BindProperty]
+        public FavRecipePerson FavRecipePerson { get; set; }
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            FavRecipePerson = await _context.FavRecipes.FindAsync(id);
+
+            if (FavRecipePerson != null)
+            {
+                _context.FavRecipes.Remove(FavRecipePerson);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
+
     }
 }

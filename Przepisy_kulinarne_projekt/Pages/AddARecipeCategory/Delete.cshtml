@@ -7,24 +7,8 @@
 <link href="~/css/table.css" rel="stylesheet" />
 <link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
-<h1>Czy na pewno chcesz usunąć kategorię?</h1>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RecipeCategory.Recipe)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RecipeCategory.Recipe.Ingredients)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RecipeCategory.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RecipeCategory.Category.CategoryName)
-        </dd>
-    </dl>
-
+<h1>Czy na pewno chcesz usunąć powiązanie?</h1>
+<div class="text-center">
     <form method="post">
         <input type="hidden" asp-for="RecipeCategory.Id" />
         <input type="submit" value="Usun" class="myButton2" />

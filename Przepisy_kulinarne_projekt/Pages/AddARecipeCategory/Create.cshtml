@@ -6,7 +6,7 @@
 }
 <link href="~/css/table.css" rel="stylesheet" />
 
-<h1>Dodaj kategorię do przepisu</h1>
+<h1>Przypisz wybrany przepis do kategorii</h1>
 
 <hr />
 <div class="row">
@@ -22,7 +22,7 @@
                 <select asp-for="RecipeCategory.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Stworz" class="myButton1" />
+                <input type="submit" value="Przypisz" class="btn-outline-secondary" />
             </div>
         </form>
     </div>

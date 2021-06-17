@@ -35,10 +35,17 @@ namespace Przepisy_kulinarne_projekt.Data
               .HasOne(b => b.User)
               .WithMany(ba => ba.FavouriteRecipes)
               .HasForeignKey(bi => bi.UserId);
+
+            modelBuilder.Entity<FavRecipePerson>()
+            .HasOne(b => b.Recipe)
+            .WithMany(ba => ba.FavRec)
+            .HasForeignKey(bi => bi.RecipeId);
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+
+        public DbSet<FavRecipePerson> FavRecipes { get; set; }
         public DbSet<FavouriteRecipe> FavouriteRecipes { get; set; }
         public DbSet<RecipeCategory> RecipeCategories { get; set; }
         public DbSet<Photography> PhotoGallery { get; set; }

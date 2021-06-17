@@ -59,7 +59,8 @@
     <h4 class="text-center mt-4">
         @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit == true)
         {
-            <a style="color: #1073b5;" asp-area="" asp-page="/AddARecipeCategory/Create">Dodaj kategorie</a>
+            @*<a style="color: #1073b5;" asp-area="" asp-page="/AddARecipeCategory/Create">Dodaj kategorie</a>*@
+            <a  asp-page="/AddARecipeCategory/Create"><button type="button" class="myButton1">Dodaj do kategorii</button></a>
         }
         <br>
         Kategoria:
@@ -98,12 +99,13 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="row justify-content-center mt-4">
-        <form method="post">
-            <button name="fav" class="btn btn-primary btn-info" asp-action="Check">Dodaj do ulubionych</button>
-        </form>
+<div class="row justify-content-center mt-4">
+    <form method="post">
+        <a asp-page="/AddAFav/Create"><button type="button" class="myButton2">Dodaj do ulubionych</button></a>
+    </form>
 
-    </div>
+</div>
+
 }
 
 <div class="text-center mt-1">
@@ -127,4 +129,5 @@
         }
     </div>
 </div>
+
 

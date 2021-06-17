@@ -1,0 +1,18 @@
+﻿@page
+@model Przepisy_kulinarne_projekt.Pages.AddAFav.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/karty.css" rel="stylesheet" />
+
+<h1>Jesteś pewny, że chcesz usunąć ten przepis z ulubionych?</h1></br>
+
+    <form method="post">
+        <div class="text-center"
+        <input type="hidden" asp-for="FavRecipePerson.Id" />
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+        </div>
+    </form>
