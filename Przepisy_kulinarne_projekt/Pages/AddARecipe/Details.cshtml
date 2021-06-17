@@ -9,6 +9,7 @@
 
 <link href="~/css/table.css" rel="stylesheet" />
 <link href="~/css/buttonprzepis.css" rel="stylesheet" />
+<link href="~/css/photo.css" rel="stylesheet" />
 
 
 <div class="row text-left justify-content-lg-center mt-5">
@@ -16,10 +17,10 @@
     {
         <div class="row">
             <a class="myButtonv2" asp-area="" asp-page="/AddARecipe/Edit" asp-route-id="@Model.Recipe.Id" title="Edytuj przepis">
-                <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;" />
+                <img src="~/images/icons/gear.svg" style="float:right;width:30px;height:30px;border:#000000" />
             </a>
             <a class="myButton2" asp-area="" asp-page="/AddARecipe/Delete" asp-route-id="@Model.Recipe.Id" title="Usuń przepis">
-                <img src="~/images/icons/trash-alt-regular.svg" style="float:right;width:30px;height:30px;" />
+                <img src="~/images/icons/trash-alt-regular.svg" style="float:right;width:30px;height:30px;border:#000000" />
             </a>
         </div>
     }
@@ -60,7 +61,7 @@
         @if (SignInManager.IsSignedIn(User) && Model.AbleToEdit == true)
         {
             @*<a style="color: #1073b5;" asp-area="" asp-page="/AddARecipeCategory/Create">Dodaj kategorie</a>*@
-            <a  asp-page="/AddARecipeCategory/Create"><button type="button" class="myButton1">Dodaj do kategorii</button></a>
+            <a asp-page="/AddARecipeCategory/Create"><button type="button" class="myButton1">Dodaj do kategorii</button></a>
         }
         <br>
         Kategoria:
@@ -99,12 +100,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<div class="row justify-content-center mt-4">
-    <form method="post">
-        <a asp-page="/AddAFav/Create"><button type="button" class="myButton2">Dodaj do ulubionych</button></a>
-    </form>
+    <div class="row justify-content-center mt-4">
+        <form method="post">
+            <a asp-page="/AddAFav/Create"><button type="button" class="myButton2">Dodaj do ulubionych</button></a>
+        </form>
 
-</div>
+    </div>
 
 }
 
@@ -117,17 +118,19 @@
         @foreach (var item in Model.Photos)
         {
             @if (item.Link != null)
-            {
-                <img src="@item.Link" style="width:200px;height:200px;" />
+            {              
+                    <img src="@item.Link" style="width:200px;height:200px;" />  
             }
             else if (item.Path != null)
             {
-                <img src="~/images/@item.Path" style="width:200px;height:200px;" />
+                    <img src="~/images/@item.Path" style="width:200px;height:200px;" />
             }
             else
             { }
         }
     </div>
 </div>
+
+
 
 
