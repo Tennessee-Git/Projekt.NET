@@ -45,10 +45,10 @@
 
 .theme-construction {
     --radius: 2px;
-    --baseFg: white;
-    --baseBg: #0abd29;
-    --accentFg: #0e91b5;
-    --accentBg: #0abd29;
+    --baseFg: black;
+    --baseBg: #ffffff;
+    --accentFg: black;
+    --accentBg: white;
 }
 
 select {
