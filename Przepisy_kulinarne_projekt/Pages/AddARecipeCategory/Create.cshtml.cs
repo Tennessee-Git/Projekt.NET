@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,16 +16,18 @@ namespace Przepisy_kulinarne_projekt.Pages.AddARecipeCategory
     public class CreateModel : PageModel
     {
         private readonly Przepisy_kulinarne_projekt.Data.ApplicationDbContext _context;
-
-        public CreateModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public CreateModel(Przepisy_kulinarne_projekt.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
-        ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "RecipeName");
+            IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
+        ViewData["RecipeId"] = new SelectList(_context.Recipes.Where(x=>x.User==user), "Id", "RecipeName");
             return Page();
         }
 

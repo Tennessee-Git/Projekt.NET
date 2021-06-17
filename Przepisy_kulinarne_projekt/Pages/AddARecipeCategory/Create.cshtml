@@ -5,6 +5,7 @@
     ViewData["Title"] = "Create";
 }
 <link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/buttonprzepis.css" rel="stylesheet" />
 
 <h1>Przypisz wybrany przepis do kategorii</h1>
 
@@ -22,11 +23,16 @@
                 <select asp-for="RecipeCategory.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Przypisz" class="btn-outline-secondary" />
+                <input type="submit" value="Przypisz" class="myButton1" />
             </div>
         </form>
     </div>
 </div>
+
+<p>
+    <h4>Nie ma kategorii, która cię interesuje?</h4></br>
+    <a asp-page="/AddACategory/Create"><button type="button" class="myButton1">Dodaj nową kategorię</button></a>
+</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
